@@ -5,7 +5,7 @@ nematodes in the lab. Designed for undergraduate
 projects.</br>
 </br>
 ### Repository guide 
-This file: README.md
+This file: README.md </br>
 Example dataset: hip_brood_mut.csv </br>
 R script: ha_reproductive_lifespans.R </br>
 Example figure: pac-hip-brood-n30-real-sig.png </br> 
@@ -20,7 +20,7 @@ Example figure: pac-hip-brood-n30-real-sig.png </br>
 Rebekah White </br>
 Email rw617@exeter.ac.uk </br>
 GitHub berk1835 </br>
-Twitter @rebekahjwhite </br></br>
+Twitter @rebekahjwhite </br>
 
 Cameron Weadick </br>
 Email c.weadick@exeter.ac.uk
