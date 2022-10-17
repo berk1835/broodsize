@@ -1,6 +1,6 @@
 ## Hippuric acid data analysis
 This is a collection of scripts and examples. 
-Use these to analyse data obtained from use of
+Use these as a framework to analyse data obtained from use of
 nematodes in the lab. Designed for undergraduate 
 projects.</br>
 </br>
