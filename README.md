@@ -5,6 +5,7 @@ nematodes in the lab. Designed for undergraduate
 projects.</br>
 </br>
 ### Repository guide 
+This file: README.md
 Example dataset: hip_brood_mut.csv </br>
 R script: ha_reproductive_lifespans.R </br>
 Example figure: pac-hip-brood-n30-real-sig.png </br> 
