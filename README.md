@@ -14,7 +14,7 @@ Example figure: pac-hip-brood-n30-real-sig.png </br>
 * Make sure you have downloaded R https://cran.r-project.org/bin/windows/base/ </br>
 * Then download RStudio Desktop https://www.rstudio.com/products/rstudio/download/ </br>
 * The open the .R file in RStudio, and you can edit variables as neccessary. </br>
-* The easiest way to make a .csv (comma separated variable) file with you data is by creating the dataset on Excel, then saving in .csv format 
+* The easiest way to make a .csv (comma separated variable) file with your data is by creating the dataset on Excel, then saving in .csv format 
 </br>
 
 ### Contributions 
