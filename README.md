@@ -6,8 +6,9 @@ projects.</br>
 </br>
 ### Repository guide 
 This file: README.md </br>
-Example dataset: hip_brood_mut.csv </br>
 R script: ha_reproductive_lifespans.R </br>
+Example dataset layout 1 (mut): hip_brood_mut.csv </br>
+Example dataset layout 2 (alr): hip_brood_all_stats.csv </br>
 Example figure: pac-hip-brood-n30-real-sig.png </br> 
 </br>
 
