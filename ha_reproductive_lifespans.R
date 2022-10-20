@@ -1,19 +1,26 @@
-##### R script for visualising and analysing brood size data with a treatment and control
-## 10/08/2022 RW, Weadick lab, University of Exeter
+##### R script for visualising and analysing brood size data with a treatment and control - mini version
+## 20/10/2022 RW, Weadick lab, University of Exeter
 
 
 # Set up ------------------------------------------------------------------
 
 
-## Set working directory 
+## EDIT ME: Set working directory 
+## Find yours by clicking ctrl+shift+H, and navigate to where your data is. Copy the folder path into the speech marks below.
+
 setwd("C:/Users/rw617/OneDrive - University of Exeter/rw617/05_Lifespan_Assay/09_Cherry-worms/hip_acid-brood")
 
 
-## Load in worm data and packages
+## Load in packages
 
 if (!require("rstatix", quietly = TRUE))
   install.packages("rstatix", INSTALL_opts = '--no-lock')
 library(rstatix)
+
+
+
+## EDIT ME: Load in data
+# Change csv file names to your file names
 
 alr <- read.csv("hip_brood_all_stats.csv")
 
@@ -27,33 +34,42 @@ mut1 <- read.csv("hip_brood_mut.csv")
 # Mutate data -------------------------------------------------------------
 
 
-## Mutate all data
+## Find mean and sd for data and turn it into a table
 
 eal <- alr %>%
   group_by(trt) %>%
   get_summary_stats(type = "mean_sd")
 
-eal1 <- eal[-9,]
-eal2 <- eal1[-17,]
+
+
+## EDIT ME: If any rows in eal should not be present (e.g., a variable called 'study'), use below to remove them.
+# If it all looks okay, ignore.
+
+#eal1 <- eal[-9,]
+#eal <- eal1[-17,]
+
+
+
 
 ## Add 'day' column
+# This is in addition to the J4+n column to make a nice plot. 
+## May need amending if your eal file is a bit different.
+
 day <- c(2,3,4,5,6,7,8,9,2,3,4,5,6,7,8,9)
-eal2$day <- day
+eal$day <- day
 
-eal2
+eal
 
 
 
-# Create subsets: treatment and control
+## Create subsets: treatment and control
+# Split data up by treatment for plot
 
-tdf <-  subset(eal2, trt == "hippuric acid",
-           select=c(trt, variable, mean, sd, day))
-
-cdf <-  subset(eal2, trt == "control",
+tdf <-  subset(eal, trt == "hippuric acid",
                select=c(trt, variable, mean, sd, day))
 
-
-
+cdf <-  subset(eal, trt == "control",
+               select=c(trt, variable, mean, sd, day))
 
 
 
@@ -75,13 +91,14 @@ plot(tdf$day, tdf$mean, type = "l", col = "coral", ylim = c(0, 80), xlim = c(2, 
 legend(7, 60, legend=c("Control", "Hippuric\nacid"), col=c("lightblue", "coral"), lty=1:2, cex=0.8, bty="n")
 
 
-## Add significance values (from aov later on in script)
 
-text(2.8, 14, "ns")
-text(3.8, 40, "ns")
-text(5, 72.5, "**")
-text(6.2, 20, "ns")
-text(7.1, 5.5, "ns")
+## Add significance values 
+# From aov later on in script; not accurate at first.
+
+#text(5, 72.5, "**")
+
+
+
 
 
 # Statistics --------------------------------------------------------------
@@ -110,52 +127,37 @@ ggqqplot(mut1, "juveniles", ggtheme = theme_bw()) +
 
 
 
+
+
 #Anova - Sphericity Assumption 
-# If the interaction is not significant then execute pairwise t test comparison (end of script)
+# If the interaction is not significant then execute pairwise t test comparison 
 
 res.aov <- anova_test(data = mut1, dv = juveniles, wid = worm_ID,within = c(trt, day))
 get_anova_table(res.aov)
 
 
 
-## Run one-way repeated measures anova
-
-myData.mean <- aggregate(mut1$juveniles,
-                         by = list(mut1$worm_ID, mut1$day,
-                                   mut1$trt),
-                         FUN = 'mean')
-colnames(myData.mean) <- c("worm_ID","day","trt","juveniles")
-myData.mean <- myData.mean[order(myData.mean$worm_ID), ]
-head(myData.mean)
 
 
-
-stress.aov <- with(myData.mean,
-                   aov(juveniles ~ day * trt +
-                         Error(worm_ID / (day * trt)))
-)
-
-
-summary(stress.aov)
+## Only if needed: t-test
+#t.test(mut1$day, mut1$juveniles ~ mut1$trt)
 
 
 
 
 
 
-
-# only if needed: basic aov
+# Basic aov - overall treatment vs. control (would expect no difference in our case)
 res1 <- aov(juveniles ~ day * trt, data = mut1)
 summary(res1)
 
 
-## Only if needed: t-test
-t.test(mut1$day, mut1$juveniles ~ mut1$trt)
 
+#### Anova for individual timepoints 
 
 ## AOV day 5
 mut5 <-  subset(mut1, day == 5,
-                 select=c(Study, worm_ID, trt, day, juveniles))
+                select=c(Study, worm_ID, trt, day, juveniles))
 
 mut5anova <- aov(juveniles ~ trt, data = mut5)
 
@@ -169,7 +171,5 @@ mut6 <-  subset(mut1, day == 6,
 mut6anova <- aov(juveniles ~ trt, data = mut6)
 
 summary(mut6anova)
-
-
 
 
