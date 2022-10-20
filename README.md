@@ -16,6 +16,11 @@ Example figure: pac-hip-brood-n30-real-sig.png </br>
 * The open the .R file in RStudio, and you can edit variables as neccessary. </br>
 * The easiest way to make a .csv (comma separated variable) file with your data is by creating the dataset on Excel, then saving in .csv format 
 </br>
+### Still stuck? </br> 
+Getting started in R: https://moderndive.netlify.app/1-getting-started.html </br>
+
+![image](https://user-images.githubusercontent.com/101263375/196938807-abcf01a1-1742-419f-a058-5a4fec0d6fd4.png)
+By <a href="https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf">link garrettgman</a> 
 
 ### Contributions 
 Rebekah White </br>
